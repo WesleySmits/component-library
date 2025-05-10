@@ -1,5 +1,8 @@
 module.exports = {
-  stories: ["../src/components/**/*.stories.@(js|jsx|ts|tsx|mdx|vue)"],
+  stories: [
+    "../src/components/**/*.stories.@(js|jsx|ts|tsx|mdx|vue)",
+    "../src/blocks/**/*.stories.@(js|jsx|ts|tsx|mdx|vue)",
+  ],
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",
