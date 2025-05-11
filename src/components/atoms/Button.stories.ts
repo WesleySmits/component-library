@@ -1,5 +1,5 @@
 import Button from "./Button.vue";
-import "./BaseButton.vue";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   title: "Components/Button",
@@ -11,9 +11,9 @@ export default {
     accessibleLabel: { control: "text" },
     disabled: { control: "boolean" },
   },
-};
+} as Meta<typeof Button>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof Button> = (args) => ({
   components: { Button },
   setup() {
     return { args };
@@ -34,6 +34,13 @@ Secondary.args = {
 };
 
 export const Link = Template.bind({});
+Link.args = {
+  label: "Button as Link",
+  href: "/",
+  variant: "primary",
+};
+
+export const ExternalLink = Template.bind({});
 Link.args = {
   label: "Button as Link",
   href: "https://example.com",
