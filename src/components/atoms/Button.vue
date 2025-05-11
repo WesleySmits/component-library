@@ -38,8 +38,6 @@
     ...attrs,
     classes: cssClasses,
   }));
-
-  console.log("componentProps", componentProps.value);
 </script>
 
 <style>

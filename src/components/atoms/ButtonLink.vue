@@ -23,8 +23,6 @@
     disabled?: boolean;
   }>();
 
-  console.log("BL Props", props);
-
   const attrs = useAttrs();
   const disabled = props.disabled || false;
   const ariaLabel = computed(

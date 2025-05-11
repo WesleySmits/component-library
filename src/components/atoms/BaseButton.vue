@@ -31,8 +31,6 @@
     () => props.accessibleLabel || props.label || undefined
   );
 
-  console.log("BB Props", props);
-
   function onClick(event: Event) {
     if (disabled) {
       event.preventDefault();
