@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@fontsource/space-grotesk':
+        specifier: ^5.2.7
+        version: 5.2.7
+      '@fontsource/work-sans':
+        specifier: ^5.2.5
+        version: 5.2.5
     devDependencies:
       '@storybook/addon-a11y':
         specifier: ^8.6.12
@@ -251,6 +258,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource/space-grotesk@5.2.7':
+    resolution: {integrity: sha512-erQDZxKdwm5g+47wqJRxh6FB4SJeIgjaK5Iyuht9lGlZ4Wl4Qqv+8xan6oBRfsJHUjALJVQ/fNTIdv9/kIEf+Q==}
+
+  '@fontsource/work-sans@5.2.5':
+    resolution: {integrity: sha512-gBw1MCX+EwMIEPPXX5dcgL1I+FJGeZnfJMPSJA0Y8pPtHA0Nve0J19mMI4lzhjmyNKAP+u4JR5zOVY4qZKjYvQ==}
 
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
@@ -1650,6 +1663,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.4':
     optional: true
+
+  '@fontsource/space-grotesk@5.2.7': {}
+
+  '@fontsource/work-sans@5.2.5': {}
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
