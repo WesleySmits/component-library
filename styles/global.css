@@ -1,0 +1,11 @@
+@import "./tokens.css";
+@import "./typography.css";
+@import "./layout.css";
+@import "./animation.css";
+@import "./media.css";
+
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}

@@ -1,21 +1,237 @@
+@property --color-brand {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: ##d10202;
+}
+@property --color-brand-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ff623d;
+}
+@property --color-brand-alt {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #000000;
+}
+@property --color-brand-alt-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #2a2a2a;
+}
+@property --color-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+@property --color-contrast-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #cccccc;
+}
+@property --color-base {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+@property --color-base-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #1a1a1a;
+}
+@property --color-tint {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #2a2a2a;
+}
+@property --color-border-base {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #333333;
+}
+@property --color-border-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #555555;
+}
+@property --font-size-xs {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0.75rem;
+}
+@property --font-size-sm {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0.875rem;
+}
+@property --font-size-base {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 1rem;
+}
+@property --font-size-lg {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 1.25rem;
+}
+@property --font-size-xl {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 2.5rem;
+}
+@property --line-height-tight {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1.1;
+}
+@property --line-height-base {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1.6;
+}
+@property --line-height-loose {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1.8;
+}
+@property --font-weight-regular {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 400;
+}
+@property --font-weight-medium {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 600;
+}
+@property --font-weight-bold {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 800;
+}
+@property --animation-duration-fast {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.2s;
+}
+@property --animation-duration-base {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.4s;
+}
+@property --animation-duration-slow {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.7s;
+}
+@property --animation-delay-short {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.05s;
+}
+@property --animation-delay-base {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.1s;
+}
+@property --gutter {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 2rem;
+}
+@property --container-width-wide {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 96rem;
+}
+@property --container-width-content {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 72rem;
+}
+@property --header-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 5rem;
+}
+@property --border-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0.5rem;
+}
+@property --spacing-xs {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0.5rem;
+}
+@property --spacing-sm {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 1rem;
+}
+@property --spacing-md {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 1.5rem;
+}
+@property --spacing-lg {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 3rem;
+}
+@property --spacing-xl {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 6rem;
+}
+
 :root {
   /* Colors */
-  --color-primary: #007cba;
-  --color-secondary: #005075;
-  --color-background: #fff;
-  --color-text: #222;
+  --color-brand: #d10202; /* Accent orange */
+  --color-brand-accent: #ff623d; /* Hover/active */
+  --color-brand-alt: #000; /* Dark surfaces */
+  --color-brand-alt-accent: #2a2a2a; /* Lighter surface */
+  --color-contrast: #ffffff; /* Primary text */
+  --color-contrast-accent: #cccccc; /* Secondary text */
+  --color-base: #121212; /* Page background */
+  --color-base-accent: #1a1a1a; /* Inner sections */
+  --color-tint: #2a2a2a; /* Panels/cards */
+  --color-border-base: #333333; /* Subtle borders */
+  --color-border-contrast: #555555; /* Higher contrast dividers */
 
-  /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
+  /* Typography */
+  --font-family-headings: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-family-body: "Work Sans", "Segoe UI", sans-serif;
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.25rem; /* 20px */
+  --font-size-xl: 2.5rem; /* 40px – bold headlines */
+  --line-height-tight: 1.1;
+  --line-height-base: 1.6;
+  --line-height-loose: 1.8;
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 800;
 
-  /* Font Sizes */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 2rem;
+  /* Animation */
+  --animation-duration-fast: 0.2s;
+  --animation-duration-base: 0.4s;
+  --animation-duration-slow: 0.7s;
+  --animation-delay-short: 0.05s;
+  --animation-delay-base: 0.1s;
+  --animation-repeat-infinite: infinite;
+
+  /* Layout */
+  --gutter: 2rem;
+  --container-width-wide: 96rem; /* ~1536px */
+  --container-width-content: 72rem; /* ~1152px */
+  --header-height: 5rem;
+  --border-radius: 0.5rem; /* Slightly rounded */
+
+  /* Spacing (keep for utility) */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 6rem;
 }

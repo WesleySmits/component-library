@@ -1,0 +1,108 @@
+@import "./tokens.css";
+
+:root {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  background: var(--color-base);
+  color: var(--color-contrast);
+  line-height: var(--line-height-base);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-size: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  color: var(--color-contrast);
+  background: var(--color-base);
+  line-height: var(--line-height-base);
+  margin: 0;
+  min-height: 100vh;
+  transition: background var(--animation-duration-base),
+    color var(--animation-duration-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-headings);
+  color: var(--color-brand);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+}
+h2 {
+  font-size: var(--font-size-lg);
+}
+h3 {
+  font-size: 1.125rem;
+}
+h4 {
+  font-size: 1rem;
+}
+h5 {
+  font-size: 0.875rem;
+}
+h6 {
+  font-size: 0.75rem;
+}
+
+p,
+ul,
+ol,
+pre,
+blockquote {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+ul,
+ol {
+  padding-left: var(--spacing-lg);
+}
+
+b,
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+a {
+  color: var(--color-brand-accent);
+  text-decoration: underline;
+  transition: color var(--animation-duration-fast);
+}
+a:hover,
+a:focus {
+  color: var(--color-brand);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border-base);
+  margin: var(--spacing-lg) 0;
+}
+
+code,
+pre {
+  font-family: "Fira Mono", "Consolas", "Menlo", monospace;
+  background: var(--color-tint);
+  color: var(--color-brand-alt-accent);
+  border-radius: var(--border-radius);
+  padding: 0.2em 0.4em;
+}

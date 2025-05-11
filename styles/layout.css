@@ -1,0 +1,24 @@
+.container-wide {
+  max-width: var(--container-width-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.container-content {
+  max-width: var(--container-width-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.header {
+  height: var(--header-height);
+  background: var(--color-brand-alt);
+  color: var(--color-contrast);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--gutter);
+}
