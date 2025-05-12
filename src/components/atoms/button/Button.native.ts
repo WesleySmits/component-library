@@ -48,10 +48,6 @@ class WsButtonLink extends HTMLAnchorElement {
     applyCommonAttributes(this);
     handleDisabledState(this, this.#preventClick);
 
-    if (name === "href" && value && isExternalLink(value)) {
-      applyExternalLinkAttributes(this);
-    }
-
     if (name === "href") {
       this.#handleExternalLinks(value);
     }
