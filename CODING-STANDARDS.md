@@ -78,21 +78,31 @@ if (!iconName) return null;
 
 - Prefer early return in functions and methods instead of else blocks, especially after handling a condition. This improves readability and reduces nesting.
   Example:
-    export function handleDisabledState(
-      el: HTMLButtonElement | HTMLAnchorElement,
-      preventClick: (event: Event) => void
-    ): void {
-      if (el.hasAttribute("disabled")) {
-        el.setAttribute("aria-disabled", "true");
-        el.tabIndex = -1;
-        el.addEventListener("click", preventClick, true);
-        return;
-      }
+  export function handleDisabledState(
+  el: HTMLButtonElement | HTMLAnchorElement,
+  preventClick: (event: Event) => void
+  ): void {
+  if (el.hasAttribute("disabled")) {
+  el.setAttribute("aria-disabled", "true");
+  el.tabIndex = -1;
+  el.addEventListener("click", preventClick, true);
+  return;
+  }
 
       el.setAttribute("aria-disabled", "false");
       el.tabIndex = 0;
       el.removeEventListener("click", preventClick, true);
-    }
+
+  }
+
+- Always explicitly annotate the return type of all functions and methods, even if it is void. This improves clarity, type safety, and consistency.
+  Example:
+  export function handleDisabledState(
+  el: HTMLButtonElement | HTMLAnchorElement,
+  preventClick: (event: Event) => void
+  ): void {
+  // ...
+  }
 
 ## 11. Class Member Order for Web Components
 
