@@ -9,22 +9,15 @@
     @click="onClick"
     @keydown.enter.space="onClick"
   >
-    <slot>{{ label }}</slot>
+    <slot></slot>
   </button>
 </template>
 
 <script lang="ts" setup>
   import { computed, useAttrs } from "vue";
+  import type { BaseButtonProps } from "./Button.type";
 
-  const props = defineProps<{
-    label?: string;
-    href?: string;
-    type?: "button" | "submit" | "reset";
-    variant?: "primary" | "secondary";
-    accessibleLabel?: string;
-    disabled?: boolean;
-  }>();
-
+  const props = defineProps<BaseButtonProps>();
   const attrs = useAttrs();
   const disabled = props.disabled || false;
   const ariaLabel = computed(

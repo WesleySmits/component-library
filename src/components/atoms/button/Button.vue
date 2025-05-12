@@ -5,7 +5,16 @@
     @click="$emit('click', $event)"
     :class="cssClasses"
   >
-    <slot />
+    <Icon
+      v-if="icon"
+      :icon="icon"
+      class="ws-button__icon"
+      :class="`ws-button__icon--${iconPosition}`"
+      :style="{ order: iconPosition === 'left' ? 0 : 2 }"
+    />
+    <span class="ws-button__content" :style="{ order: 1 }">
+      <slot>{{ label }}</slot>
+    </span>
   </component>
 </template>
 
@@ -13,15 +22,10 @@
   import { computed, useAttrs } from "vue";
   import BaseButton from "./BaseButton.vue";
   import ButtonLink from "./ButtonLink.vue";
+  import Icon from "../icon/Icon.vue";
+  import type { ButtonProps } from "./Button.type";
 
-  const props = defineProps<{
-    label?: string;
-    href?: string;
-    accessibleLabel?: string;
-    disabled?: boolean;
-    variant?: "primary" | "secondary";
-    classes?: string | string[] | Record<string, boolean>;
-  }>();
+  const props = defineProps<ButtonProps>();
 
   const cssClasses = [
     "ws-button",
@@ -33,11 +37,26 @@
   const attrs = useAttrs();
   const isLink = computed(() => !!props.href);
 
-  const componentProps = computed(() => ({
-    ...props,
-    ...attrs,
-    classes: cssClasses,
-  }));
+  // icon can be a string (icon name) or true (show icon)
+  const icon = computed(() => {
+    if (typeof props.icon === "string") return props.icon;
+    // If you want to support icon=true for a default icon, set it here, e.g. 'external' or null
+    return null;
+  });
+  const iconPosition = computed(() => props.iconPosition ?? "right");
+
+  const componentProps = computed(() => {
+    // Always provide href as a string for both cases to satisfy the union type
+    const { href, ...rest } = props;
+    return {
+      ...rest,
+      href: isLink.value ? href ?? "" : "",
+      ...attrs,
+      classes: cssClasses,
+      icon: undefined,
+      iconPosition: undefined,
+    };
+  });
 </script>
 
 <style>
@@ -148,5 +167,25 @@
   .ws-button:focus-visible {
     outline: 2px solid var(--button-focus-color);
     outline-offset: 2px;
+  }
+
+  .ws-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    pointer-events: none;
+  }
+  .ws-button__icon--left {
+    order: 0;
+  }
+  .ws-button__icon--right {
+    order: 2;
+  }
+  .ws-button__content {
+    order: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
