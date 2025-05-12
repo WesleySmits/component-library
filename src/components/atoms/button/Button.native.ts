@@ -9,7 +9,6 @@ import {
   handleDisabledState,
   updateButtonClasses,
 } from "./Button.helpers";
-import { ButtonVariant } from "./Button.type";
 
 class WsBaseButton extends HTMLButtonElement {
   public static get observedAttributes(): string[] {
@@ -24,11 +23,13 @@ class WsBaseButton extends HTMLButtonElement {
   public connectedCallback(): void {
     applyCommonAttributes(this);
     updateButtonClasses(this);
-    this.classList.add("ws-base-button");
+    console.log("TESTING 2", this);
   }
 }
 
-customElements.define("ws-base-button", WsBaseButton, { extends: "button" });
+if (!customElements.get("ws-base-button")) {
+  customElements.define("ws-base-button", WsBaseButton, { extends: "button" });
+}
 
 class WsButtonLink extends HTMLAnchorElement {
   public static get observedAttributes(): string[] {
@@ -67,7 +68,7 @@ class WsButtonLink extends HTMLAnchorElement {
     handleDisabledState(this, this.#preventClick);
     this.#handleExternalLinks(this.href);
     updateButtonClasses(this, { isLink: true });
-    this.classList.add("ws-button-link");
+    console.log("TESTING", this);
   }
 
   #handleExternalLinks(hrefValue: string | null): void {
@@ -79,4 +80,6 @@ class WsButtonLink extends HTMLAnchorElement {
   }
 }
 
-customElements.define("ws-button-link", WsButtonLink, { extends: "a" });
+if (!customElements.get("ws-button-link")) {
+  customElements.define("ws-button-link", WsButtonLink, { extends: "a" });
+}
