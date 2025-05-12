@@ -1,5 +1,6 @@
 import Button from "./Button.vue";
-import type { Meta, StoryFn } from "@storybook/vue3";
+import type { Meta, StoryFn, StoryObj } from "@storybook/vue3";
+import { ButtonVariant } from "./Button.type";
 
 export default {
   title: "Components/Button",
@@ -24,25 +25,25 @@ const Template: StoryFn<typeof Button> = (args) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   label: "Primary Button",
-  variant: "primary",
+  variant: ButtonVariant.Primary,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   label: "Secondary Button",
-  variant: "secondary",
+  variant: ButtonVariant.Secondary,
 };
 
 export const Link = Template.bind({});
 Link.args = {
   label: "Button as Link",
   href: "/",
-  variant: "primary",
+  variant: ButtonVariant.Primary,
 };
 
 export const ExternalLink = Template.bind({});
 ExternalLink.args = {
   label: "Button as Link",
   href: "https://example.com",
-  variant: "primary",
+  variant: ButtonVariant.Primary,
 };
