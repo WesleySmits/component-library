@@ -76,6 +76,60 @@ if (!iconName) {
 if (!iconName) return null;
 ```
 
+## 11. Class Member Order for Web Components
+For all custom elements and classes, use the following order:
+
+1. **Static properties and static getter/setter** (e.g. observedAttributes)
+2. **Instance properties** (fields, including those set in the constructor)
+3. **Constructor**
+4. **Getter/setter for each property** (grouped together, alphabetically if possible)
+5. **Public methods** (documented with `public` JSDoc tag)
+6. **Protected methods** (documented with `protected` JSDoc tag)
+7. **Private methods** (prefix with `#` and document with `private` JSDoc tag)
+8. **Lifecycle methods** (connectedCallback, disconnectedCallback, attributeChangedCallback, etc.)
+9. **Render method**
+
+- Add a comment before each section for clarity.
+- Always use TypeScript for all class fields and methods.
+- Example:
+
+```ts
+class ExampleComponent extends HTMLElement {
+  // 1. Static properties
+  static get observedAttributes() { return [/* ... */]; }
+
+  // 2. Instance properties
+  private _foo: string;
+
+  // 3. Constructor
+  constructor() { /* ... */ }
+
+  // 4. Getters/setters
+  get foo() { /* ... */ }
+  set foo(val) { /* ... */ }
+
+  // 5. Public methods
+  /** @public */
+  public doSomething() { /* ... */ }
+
+  // 6. Protected methods
+  /** @protected */
+  protected _helper() { /* ... */ }
+
+  // 7. Private methods
+  /** @private */
+  #privateHelper() { /* ... */ }
+
+  // 8. Lifecycle methods
+  connectedCallback() { /* ... */ }
+  disconnectedCallback() { /* ... */ }
+  attributeChangedCallback() { /* ... */ }
+
+  // 9. Render method
+  render() { /* ... */ }
+}
+```
+
 ---
 
 _If you have suggestions or want to propose changes, open a PR to this file._
