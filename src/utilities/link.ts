@@ -5,7 +5,9 @@
  */
 export function isExternalLink(href: string): boolean {
   try {
-    return /^(https?:)?\/\//.test(href) && !href.startsWith(window.location.origin);
+    return (
+      /^(https?:)?\/\//.test(href) && !href.startsWith(window.location.origin)
+    );
   } catch {
     return false;
   }
@@ -17,6 +19,6 @@ export function isExternalLink(href: string): boolean {
  * @param {HTMLAnchorElement} anchor - The anchor element to modify.
  */
 export function applyExternalLinkAttributes(anchor: HTMLAnchorElement) {
-  anchor.setAttribute('target', '_blank');
-  anchor.setAttribute('rel', 'noopener noreferrer external');
+  anchor.setAttribute("target", "_blank");
+  anchor.setAttribute("rel", "noopener noreferrer external");
 }
