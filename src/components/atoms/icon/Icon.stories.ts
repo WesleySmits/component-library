@@ -21,7 +21,7 @@ const Template: StoryFn<typeof Icon> = (args: IconProps) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  icon: "check",
+  icon: "up-right-from-square",
   size: "1x",
 };
 
