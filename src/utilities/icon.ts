@@ -1,3 +1,5 @@
+import { library } from "@fortawesome/fontawesome-svg-core";
+
 // Move extractIcons above the icon set imports so it can be used directly
 export function extractIcons(
   mod: Record<string, unknown>
@@ -85,6 +87,13 @@ export function getAllIcons(): Record<string, IconDefinition> {
 // Patchable icon cache for testability
 let _allIcons: Record<string, IconDefinition> | null = null;
 
+// Register all icons at module load (browser-safe)
+const allIcons = getAllIcons();
+Object.values(allIcons).forEach((icon) => {
+  library.add(icon);
+});
+_allIcons = allIcons;
+
 export function __setAllIconsForTest(
   icons: Record<string, IconDefinition> | null
 ) {
@@ -92,15 +101,8 @@ export function __setAllIconsForTest(
 }
 
 export function getAllIconsAndRegister(): Record<string, IconDefinition> {
-  if (_allIcons) return _allIcons;
-  const allIcons = getAllIcons();
-  Object.values(allIcons).forEach((icon) => {
-    // Import here to avoid circular dependency
-    const { library } = require("@fortawesome/fontawesome-svg-core");
-    library.add(icon);
-  });
-  _allIcons = allIcons;
-  return allIcons;
+  // Now just return the cached icons
+  return _allIcons!;
 }
 
 export function getAllIconsCached(): Record<string, IconDefinition> {
