@@ -76,6 +76,24 @@ if (!iconName) {
 if (!iconName) return null;
 ```
 
+- Prefer early return in functions and methods instead of else blocks, especially after handling a condition. This improves readability and reduces nesting.
+  Example:
+    export function handleDisabledState(
+      el: HTMLButtonElement | HTMLAnchorElement,
+      preventClick: (event: Event) => void
+    ): void {
+      if (el.hasAttribute("disabled")) {
+        el.setAttribute("aria-disabled", "true");
+        el.tabIndex = -1;
+        el.addEventListener("click", preventClick, true);
+        return;
+      }
+
+      el.setAttribute("aria-disabled", "false");
+      el.tabIndex = 0;
+      el.removeEventListener("click", preventClick, true);
+    }
+
 ## 11. Class Member Order for Web Components
 
 For all custom elements and classes, use the following order:
