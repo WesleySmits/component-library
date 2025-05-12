@@ -77,6 +77,7 @@ if (!iconName) return null;
 ```
 
 ## 11. Class Member Order for Web Components
+
 For all custom elements and classes, use the following order:
 
 1. **Static properties and static getter/setter** (e.g. observedAttributes)
@@ -89,44 +90,113 @@ For all custom elements and classes, use the following order:
 8. **Lifecycle methods** (connectedCallback, disconnectedCallback, attributeChangedCallback, etc.)
 9. **Render method**
 
-- Add a comment before each section for clarity.
+- Add a comment before each section for clarity. Unless the section is empty, then add no comment.
 - Always use TypeScript for all class fields and methods.
+- Always use the `public` keyword for public methods and properties in TypeScript classes, even though it is the default. This makes intent explicit and consistent.
+- Always add a single empty line between class members (methods, getters, setters, properties, etc.), including between paired getter/setter blocks.
+  Example:
+  public get accessibleLabel(): string {
+  return this.getAttribute("accessible-label") || this.label;
+  }
+
+  public set accessibleLabel(val: string) {
+  this.setAttribute("accessible-label", val);
+  }
+
+  (No blank line between get/set signature, but always a blank line after each block.)
+
+- Always add a single empty line between logical code blocks inside functions and methods (such as between if/else blocks, loops, and major steps).
+  Example:
+  public connectedCallback(): void {
+  if (this.hasAttribute("label")) {
+  this.textContent = this.getAttribute("label")!;
+  }
+
+  if (this.hasAttribute("accessible-label")) {
+  this.setAttribute("aria-label", this.getAttribute("accessible-label")!);
+  }
+
+  if (this.hasAttribute("variant")) {
+  this.setAttribute("data-variant", this.getAttribute("variant")!);
+  }
+
+  if (this.hasAttribute("disabled")) {
+  this.setAttribute("aria-disabled", "true");
+  this.tabIndex = -1;
+  this.addEventListener("click", this.#preventClick, true);
+  } else {
+  this.setAttribute("aria-disabled", "false");
+  this.tabIndex = 0;
+  this.removeEventListener("click", this.#preventClick, true);
+  }
+
+  if (this.getAttribute("target") === "\_blank") {
+  this.setAttribute("rel", "noopener noreferrer");
+  }
+
+  this.classList.add("ws-button-link");
+  }
+
 - Example:
 
 ```ts
 class ExampleComponent extends HTMLElement {
   // 1. Static properties
-  static get observedAttributes() { return [/* ... */]; }
+  static get observedAttributes() {
+    return [
+      /* ... */
+    ];
+  }
 
   // 2. Instance properties
   private _foo: string;
 
   // 3. Constructor
-  constructor() { /* ... */ }
+  constructor() {
+    /* ... */
+  }
 
   // 4. Getters/setters
-  get foo() { /* ... */ }
-  set foo(val) { /* ... */ }
+  get foo() {
+    /* ... */
+  }
+  set foo(val) {
+    /* ... */
+  }
 
   // 5. Public methods
   /** @public */
-  public doSomething() { /* ... */ }
+  public doSomething() {
+    /* ... */
+  }
 
   // 6. Protected methods
   /** @protected */
-  protected _helper() { /* ... */ }
+  protected _helper() {
+    /* ... */
+  }
 
   // 7. Private methods
   /** @private */
-  #privateHelper() { /* ... */ }
+  #privateHelper() {
+    /* ... */
+  }
 
   // 8. Lifecycle methods
-  connectedCallback() { /* ... */ }
-  disconnectedCallback() { /* ... */ }
-  attributeChangedCallback() { /* ... */ }
+  connectedCallback() {
+    /* ... */
+  }
+  disconnectedCallback() {
+    /* ... */
+  }
+  attributeChangedCallback() {
+    /* ... */
+  }
 
   // 9. Render method
-  render() { /* ... */ }
+  render() {
+    /* ... */
+  }
 }
 ```
 
