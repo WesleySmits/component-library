@@ -27,9 +27,3 @@ export function handleDisabledState(
   el.tabIndex = 0;
   el.removeEventListener("click", preventClick, true);
 }
-
-export function handleTargetBlank(el: HTMLAnchorElement): void {
-  if (el.getAttribute("target") === "_blank") {
-    el.setAttribute("rel", "noopener noreferrer");
-  }
-}
