@@ -42,7 +42,10 @@ function toFaVarName(iconName: string): string {
     "fa" +
     iconName
       .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .map((part) => {
+        // Capitalize each part for clarity
+        return part.charAt(0).toUpperCase() + part.slice(1);
+      })
       .join("")
   );
 }
@@ -51,22 +54,31 @@ function toFaVarName(iconName: string): string {
 export function findFaIcon(iconName: string): IconDefinition | null {
   const allIcons = getAllIconsCached();
 
+  // Return null if no icon name is provided
   if (!iconName) {
     return null;
   }
 
-  // Direct match
-  if (Object.prototype.hasOwnProperty.call(allIcons, iconName)) {
+  // Direct match (exact key)
+  const hasDirectMatch = Object.prototype.hasOwnProperty.call(
+    allIcons,
+    iconName
+  );
+  if (hasDirectMatch) {
     return allIcons[iconName];
   }
 
-  // Try kebab-case to PascalCase conversion
+  // Try kebab-case to PascalCase conversion (faUpRightFromSquare)
   const faVariableName = toFaVarName(iconName);
-  if (Object.prototype.hasOwnProperty.call(allIcons, faVariableName)) {
+  const hasFaVarMatch = Object.prototype.hasOwnProperty.call(
+    allIcons,
+    faVariableName
+  );
+  if (hasFaVarMatch) {
     return allIcons[faVariableName];
   }
 
-  // Case-insensitive match
+  // Case-insensitive match (fallback)
   const matchingKey = Object.keys(allIcons).find(
     (key) => key.toLowerCase() === iconName.toLowerCase()
   );
@@ -74,6 +86,7 @@ export function findFaIcon(iconName: string): IconDefinition | null {
     return allIcons[matchingKey];
   }
 
+  // No match found
   return null;
 }
 
