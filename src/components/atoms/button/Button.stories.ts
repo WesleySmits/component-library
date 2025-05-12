@@ -1,4 +1,5 @@
 import Button from "./Button.vue";
+import ButtonNativeWrapper from "./ButtonNativeWrapper.vue";
 import type { Meta, StoryFn, StoryObj } from "@storybook/vue3";
 import { ButtonVariant } from "./Button.type";
 
@@ -46,4 +47,39 @@ ExternalLink.args = {
   label: "Button as Link",
   href: "https://example.com",
   variant: ButtonVariant.Primary,
+};
+
+export const NativeButton = {
+  name: "NativeButton",
+  args: {
+    label: "Web Button",
+    variant: ButtonVariant.Primary,
+    disabled: false,
+    accessibleLabel: "",
+  },
+  render: (args: any) => ({
+    components: { ButtonNativeWrapper },
+    setup() {
+      return { args };
+    },
+    template: `<ButtonNativeWrapper tag="button" is="ws-base-button" v-bind="args" />`,
+  }),
+};
+
+export const NativeButtonLink = {
+  name: "NativeButtonLink",
+  args: {
+    label: "Web Button Link",
+    href: "https://example.com",
+    variant: ButtonVariant.Primary,
+    disabled: false,
+    accessibleLabel: "",
+  },
+  render: (args: any) => ({
+    components: { ButtonNativeWrapper },
+    setup() {
+      return { args };
+    },
+    template: `<ButtonNativeWrapper tag="a" is="ws-button-link" v-bind="args" />`,
+  }),
 };
