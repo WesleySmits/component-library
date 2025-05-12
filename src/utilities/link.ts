@@ -4,10 +4,21 @@
  * @returns {boolean} True if the link is external, false otherwise.
  */
 export function isExternalLink(href: string): boolean {
+  // Return false if input is not a string
+  if (typeof href !== "string") {
+    return false;
+  }
+
+  // Check if the href is an absolute http(s) URL and not the current origin
   try {
-    return (
-      /^(https?:)?\/\//.test(href) && !href.startsWith(window.location.origin)
-    );
+    const isHttp = /^(https?:)?\/\//.test(href);
+    const isNotOrigin = !href.startsWith(window.location.origin);
+
+    if (isHttp && isNotOrigin) {
+      return true;
+    }
+
+    return false;
   } catch {
     return false;
   }
