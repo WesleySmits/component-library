@@ -1,6 +1,6 @@
 <template>
   <a
-    :class="['ws-button-link', { 'ws-button-link--disabled': disabled }]"
+    :class="['ws-button-link']"
     :href="disabled ? undefined : href"
     :aria-label="ariaLabel"
     :aria-disabled="disabled ? 'true' : undefined"
@@ -46,25 +46,3 @@
     }
   }
 </script>
-
-<style scoped>
-  .ws-button-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .ws-button-link--disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-  .ws-button__icon {
-    display: inline-flex;
-    align-items: center;
-    font-size: 1em;
-    pointer-events: none;
-    order: 2;
-  }
-</style>
