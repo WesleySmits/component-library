@@ -37,16 +37,13 @@
   const attrs = useAttrs();
   const isLink = computed(() => !!props.href);
 
-  // icon can be a string (icon name) or true (show icon)
   const icon = computed(() => {
     if (typeof props.icon === "string") return props.icon;
-    // If you want to support icon=true for a default icon, set it here, e.g. 'external' or null
     return null;
   });
   const iconPosition = computed(() => props.iconPosition ?? "right");
 
   const componentProps = computed(() => {
-    // Always provide href as a string for both cases to satisfy the union type
     const { href, ...rest } = props;
     return {
       ...rest,
