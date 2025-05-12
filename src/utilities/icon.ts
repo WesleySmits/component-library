@@ -36,13 +36,25 @@ export type FaSize =
   | "9x"
   | "10x";
 
+// Convert kebab-case (e.g. up-right-from-square) to PascalCase (UpRightFromSquare)
+function toFaVarName(iconName: string): string {
+  return (
+    "fa" +
+    iconName
+      .split("-")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join("")
+  );
+}
+
 // Find a FontAwesome icon by various naming conventions
 export function findFaIcon(iconName: string): IconDefinition | null {
   const allIcons = getAllIconsCached();
   if (!iconName) return null;
   if (Object.prototype.hasOwnProperty.call(allIcons, iconName))
     return allIcons[iconName];
-  const faName = "fa" + iconName.charAt(0).toUpperCase() + iconName.slice(1);
+  // Try kebab-case to PascalCase conversion
+  const faName = toFaVarName(iconName);
   if (Object.prototype.hasOwnProperty.call(allIcons, faName))
     return allIcons[faName];
   const lower = Object.keys(allIcons).find(
