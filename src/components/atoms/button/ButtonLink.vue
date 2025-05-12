@@ -11,7 +11,7 @@
   >
     <Icon
       v-if="showExternalIcon"
-      icon="external"
+      icon="arrow-up-right-from-square"
       class="ws-button__icon ws-button__icon--right"
     />
     <slot>{{ label }}</slot>
