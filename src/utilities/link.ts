@@ -33,3 +33,17 @@ export function applyExternalLinkAttributes(anchor: HTMLAnchorElement) {
   anchor.setAttribute("target", "_blank");
   anchor.setAttribute("rel", "noopener noreferrer external");
 }
+
+/**
+ * Removes security and accessibility attributes from an anchor element for external links.
+ * Removes target and rel attributes if they match the values set by applyExternalLinkAttributes.
+ * @param {HTMLAnchorElement} anchor - The anchor element to modify.
+ */
+export function removeExternalLinkAttributes(anchor: HTMLAnchorElement) {
+  if (anchor.getAttribute("target") === "_blank") {
+    anchor.removeAttribute("target");
+  }
+  if (anchor.getAttribute("rel") === "noopener noreferrer external") {
+    anchor.removeAttribute("rel");
+  }
+}

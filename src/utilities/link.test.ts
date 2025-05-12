@@ -1,5 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { isExternalLink, applyExternalLinkAttributes } from "./link";
+import {
+  isExternalLink,
+  applyExternalLinkAttributes,
+  removeExternalLinkAttributes,
+} from "./link";
 
 // Ensure jsdom environment for window/document
 declare const window: any;
@@ -47,5 +51,41 @@ describe("applyExternalLinkAttributes", () => {
     applyExternalLinkAttributes(anchor);
     expect(anchor.getAttribute("target")).toBe("_blank");
     expect(anchor.getAttribute("rel")).toBe("noopener noreferrer external");
+  });
+});
+
+describe("removeExternalLinkAttributes", () => {
+  it("removes target and rel if set to external values", () => {
+    const anchor = document.createElement("a");
+    anchor.setAttribute("target", "_blank");
+    anchor.setAttribute("rel", "noopener noreferrer external");
+    removeExternalLinkAttributes(anchor);
+    expect(anchor.hasAttribute("target")).toBe(false);
+    expect(anchor.hasAttribute("rel")).toBe(false);
+  });
+
+  it("does not remove target if set to something else", () => {
+    const anchor = document.createElement("a");
+    anchor.setAttribute("target", "_self");
+    anchor.setAttribute("rel", "noopener noreferrer external");
+    removeExternalLinkAttributes(anchor);
+    expect(anchor.getAttribute("target")).toBe("_self");
+    expect(anchor.hasAttribute("rel")).toBe(false);
+  });
+
+  it("does not remove rel if set to something else", () => {
+    const anchor = document.createElement("a");
+    anchor.setAttribute("target", "_blank");
+    anchor.setAttribute("rel", "nofollow");
+    removeExternalLinkAttributes(anchor);
+    expect(anchor.hasAttribute("target")).toBe(false);
+    expect(anchor.getAttribute("rel")).toBe("nofollow");
+  });
+
+  it("does nothing if neither attribute is set", () => {
+    const anchor = document.createElement("a");
+    removeExternalLinkAttributes(anchor);
+    expect(anchor.hasAttribute("target")).toBe(false);
+    expect(anchor.hasAttribute("rel")).toBe(false);
   });
 });
