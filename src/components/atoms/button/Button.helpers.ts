@@ -20,11 +20,12 @@ export function handleDisabledState(
     el.setAttribute("aria-disabled", "true");
     el.tabIndex = -1;
     el.addEventListener("click", preventClick, true);
-  } else {
-    el.setAttribute("aria-disabled", "false");
-    el.tabIndex = 0;
-    el.removeEventListener("click", preventClick, true);
+    return;
   }
+
+  el.setAttribute("aria-disabled", "false");
+  el.tabIndex = 0;
+  el.removeEventListener("click", preventClick, true);
 }
 
 export function handleTargetBlank(el: HTMLAnchorElement): void {
