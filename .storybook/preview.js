@@ -15,4 +15,15 @@ export const parameters = {
     config: {},
     options: {},
   },
+  docs: {
+    // Enable web components support in Storybook Docs
+    source: { type: "code" },
+    extractComponentDescription: (component, { notes }) => {
+      // Show a description for web components
+      if (typeof component === "string" && component.startsWith("ws-")) {
+        return `Native web component: <${component}>`;
+      }
+      return notes;
+    },
+  },
 };
