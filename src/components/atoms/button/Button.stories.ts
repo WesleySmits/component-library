@@ -41,7 +41,7 @@ Link.args = {
 };
 
 export const ExternalLink = Template.bind({});
-Link.args = {
+ExternalLink.args = {
   label: "Button as Link",
   href: "https://example.com",
   variant: "primary",
