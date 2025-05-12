@@ -1,4 +1,10 @@
-export type ButtonVariant = "primary" | "secondary";
+// Button variant enum for type safety and maintainability
+export enum ButtonVariant {
+  Primary = "primary",
+  Secondary = "secondary",
+  Tertiary = "tertiary",
+  Danger = "danger",
+}
 
 export interface ButtonProps {
   label?: string;

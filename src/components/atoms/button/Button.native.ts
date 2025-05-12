@@ -4,19 +4,26 @@ import {
   removeExternalLinkAttributes,
 } from "@/utilities/link";
 import "./Button.css";
-import { applyCommonAttributes, handleDisabledState } from "./Button.helpers";
+import {
+  applyCommonAttributes,
+  handleDisabledState,
+  updateButtonClasses,
+} from "./Button.helpers";
+import { ButtonVariant } from "./Button.type";
 
 class WsBaseButton extends HTMLButtonElement {
   public static get observedAttributes(): string[] {
-    return ["label", "variant", "accessible-label"];
+    return ["label", "variant", "accessible-label", "disabled"];
   }
 
   public attributeChangedCallback(): void {
     applyCommonAttributes(this);
+    updateButtonClasses(this);
   }
 
   public connectedCallback(): void {
     applyCommonAttributes(this);
+    updateButtonClasses(this);
     this.classList.add("ws-base-button");
   }
 }
@@ -32,6 +39,7 @@ class WsButtonLink extends HTMLAnchorElement {
       "disabled",
       "target",
       "rel",
+      "href",
     ];
   }
 
@@ -47,6 +55,7 @@ class WsButtonLink extends HTMLAnchorElement {
   ): void {
     applyCommonAttributes(this);
     handleDisabledState(this, this.#preventClick);
+    updateButtonClasses(this, { isLink: true });
 
     if (name === "href") {
       this.#handleExternalLinks(value);
@@ -57,6 +66,7 @@ class WsButtonLink extends HTMLAnchorElement {
     applyCommonAttributes(this);
     handleDisabledState(this, this.#preventClick);
     this.#handleExternalLinks(this.href);
+    updateButtonClasses(this, { isLink: true });
     this.classList.add("ws-button-link");
   }
 
