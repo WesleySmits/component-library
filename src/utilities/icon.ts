@@ -50,17 +50,30 @@ function toFaVarName(iconName: string): string {
 // Find a FontAwesome icon by various naming conventions
 export function findFaIcon(iconName: string): IconDefinition | null {
   const allIcons = getAllIconsCached();
-  if (!iconName) return null;
-  if (Object.prototype.hasOwnProperty.call(allIcons, iconName))
+
+  if (!iconName) {
+    return null;
+  }
+
+  // Direct match
+  if (Object.prototype.hasOwnProperty.call(allIcons, iconName)) {
     return allIcons[iconName];
+  }
+
   // Try kebab-case to PascalCase conversion
-  const faName = toFaVarName(iconName);
-  if (Object.prototype.hasOwnProperty.call(allIcons, faName))
-    return allIcons[faName];
-  const lower = Object.keys(allIcons).find(
-    (k) => k.toLowerCase() === iconName.toLowerCase()
+  const faVariableName = toFaVarName(iconName);
+  if (Object.prototype.hasOwnProperty.call(allIcons, faVariableName)) {
+    return allIcons[faVariableName];
+  }
+
+  // Case-insensitive match
+  const matchingKey = Object.keys(allIcons).find(
+    (key) => key.toLowerCase() === iconName.toLowerCase()
   );
-  if (lower) return allIcons[lower];
+  if (matchingKey) {
+    return allIcons[matchingKey];
+  }
+
   return null;
 }
 
