@@ -1,3 +1,4 @@
+import { findFaIcon } from "@/utilities/icon";
 import { ButtonVariant } from "./Button.type";
 
 export function applyCommonAttributes(el: HTMLElement): void {
@@ -51,5 +52,25 @@ export function updateButtonClasses(
     Object.values(ButtonVariant).includes(variant as ButtonVariant)
   ) {
     el.classList.add(`ws-button--${variant}`);
+  }
+}
+
+export function updateButtonIcon(el: HTMLElement): void {
+  const prevIcon = el.querySelector(".ws-icon");
+
+  if (prevIcon) {
+    prevIcon.remove();
+  }
+
+  const icon = el.getAttribute("icon");
+  const foundIcon = findFaIcon(icon ?? "");
+
+  if (foundIcon) {
+    const iconEl = document.createElement("ws-icon");
+    iconEl.setAttribute("icon", icon ?? "");
+    iconEl.setAttribute("class", "ws-icon ws-button__icon");
+    iconEl.setAttribute("aria-hidden", "true");
+    iconEl.setAttribute("focusable", "false");
+    el.insertBefore(iconEl, el.firstChild);
   }
 }

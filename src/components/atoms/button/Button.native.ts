@@ -8,22 +8,27 @@ import {
   applyCommonAttributes,
   handleDisabledState,
   updateButtonClasses,
+  updateButtonIcon,
 } from "./Button.helpers";
+import "../icon/Icon.native";
 
 class WsBaseButton extends HTMLButtonElement {
   public static get observedAttributes(): string[] {
-    return ["label", "variant", "accessible-label", "disabled"];
+    return ["label", "variant", "accessible-label", "disabled", "icon"];
   }
 
-  public attributeChangedCallback(): void {
+  public attributeChangedCallback(name: string): void {
     applyCommonAttributes(this);
     updateButtonClasses(this);
+    if (name === "icon") {
+      updateButtonIcon(this);
+    }
   }
 
   public connectedCallback(): void {
     applyCommonAttributes(this);
     updateButtonClasses(this);
-    console.log("TESTING 2", this);
+    updateButtonIcon(this);
   }
 }
 
@@ -41,6 +46,7 @@ class WsButtonLink extends HTMLAnchorElement {
       "target",
       "rel",
       "href",
+      "icon",
     ];
   }
 
@@ -57,7 +63,7 @@ class WsButtonLink extends HTMLAnchorElement {
     applyCommonAttributes(this);
     handleDisabledState(this, this.#preventClick);
     updateButtonClasses(this, { isLink: true });
-
+    updateButtonIcon(this);
     if (name === "href") {
       this.#handleExternalLinks(value);
     }
@@ -68,13 +74,15 @@ class WsButtonLink extends HTMLAnchorElement {
     handleDisabledState(this, this.#preventClick);
     this.#handleExternalLinks(this.href);
     updateButtonClasses(this, { isLink: true });
-    console.log("TESTING", this);
+    updateButtonIcon(this);
   }
 
   #handleExternalLinks(hrefValue: string | null): void {
     if (hrefValue && isExternalLink(hrefValue)) {
+      this.setAttribute("icon", "arrow-up-right-from-square");
       applyExternalLinkAttributes(this);
     } else {
+      this.removeAttribute("icon");
       removeExternalLinkAttributes(this);
     }
   }

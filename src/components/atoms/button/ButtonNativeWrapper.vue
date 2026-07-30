@@ -14,6 +14,7 @@
     disabled?: boolean;
     accessibleLabel?: string;
     href?: string;
+    icon?: string;
   }>();
 
   const container = ref<HTMLElement | null>(null);
@@ -36,6 +37,11 @@
     if (props.tag === "a" && props.href) {
       el.setAttribute("href", props.href);
     }
+
+    if (props.icon) {
+      el.setAttribute("icon", props.icon);
+    }
+
     container.value.appendChild(el);
   }
 

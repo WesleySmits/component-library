@@ -1,6 +1,7 @@
 import Icon from "./Icon.vue";
 import type { Meta, StoryFn } from "@storybook/vue3";
 import type { IconProps } from "./Icon.type";
+import IconNativeWrapper from "./IconNativeWrapper.vue";
 
 export default {
   title: "Components/Icon",
@@ -35,4 +36,34 @@ export const CustomIcon = Template.bind({});
 CustomIcon.args = {
   icon: "external",
   size: "lg",
+};
+
+export const NativeIconDefault = {
+  name: "NativeIconDefault",
+  args: {
+    icon: "check",
+    size: "1x",
+  },
+  render: (args: any) => ({
+    components: { IconNativeWrapper },
+    setup() {
+      return { args };
+    },
+    template: `<IconNativeWrapper v-bind="args" />`,
+  }),
+};
+
+export const NativeIconLarge = {
+  name: "NativeIconLarge",
+  args: {
+    icon: "check",
+    size: "2x",
+  },
+  render: (args: any) => ({
+    components: { IconNativeWrapper },
+    setup() {
+      return { args };
+    },
+    template: `<IconNativeWrapper v-bind="args" />`,
+  }),
 };

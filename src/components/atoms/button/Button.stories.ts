@@ -56,6 +56,7 @@ export const NativeButton = {
     variant: ButtonVariant.Primary,
     disabled: false,
     accessibleLabel: "",
+    icon: undefined,
   },
   render: (args: any) => ({
     components: { ButtonNativeWrapper },
@@ -74,6 +75,7 @@ export const NativeButtonLink = {
     variant: ButtonVariant.Primary,
     disabled: false,
     accessibleLabel: "",
+    icon: undefined,
   },
   render: (args: any) => ({
     components: { ButtonNativeWrapper },
