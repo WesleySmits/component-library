@@ -7,7 +7,7 @@
       <BaseButton
         v-if="buttonLabel && buttonUrl"
         :label="buttonLabel"
-        :variant="'primary'"
+        :variant="ButtonVariant.Primary"
         :accessible-label="buttonLabel"
         @click="onButtonClick"
       />
@@ -17,6 +17,7 @@
 
 <script lang="ts" setup>
   import BaseButton from "@/components/atoms/button/BaseButton.vue";
+  import { ButtonVariant } from "@/components/atoms/button/Button.type";
 
   const props = defineProps<{
     image?: string;

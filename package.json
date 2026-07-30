@@ -10,12 +10,17 @@
     "build-storybook": "storybook build",
     "deploy-storybook": "gh-pages -d storybook-static",
     "test": "vitest run",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "typecheck": "vue-tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@11.17.0",
+  "engines": {
+    "node": ">=22.13.0 <23",
+    "pnpm": ">=11.17.0 <12"
+  },
   "devDependencies": {
     "@storybook/addon-a11y": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
