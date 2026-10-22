@@ -19,7 +19,7 @@
   "packageManager": "pnpm@12.15.0",
   "engines": {
     "node": ">=24.18.0 <25",
-    "pnpm": ">=12.2.1 <13"
+    "pnpm": "12.15.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^8.6.12",
